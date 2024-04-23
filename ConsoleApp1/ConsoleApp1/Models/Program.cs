@@ -14,8 +14,10 @@ namespace ConsoleApp1.Models
 
 
             string json = JsonConvert.SerializeObject(nameAnar);
+            string path = "C:\\Users\\User\\Desktop\\File, Directory\\ConsoleApp1\\ConsoleApp1\\JsonFile\\json1.json";
+            Serialize(json, path);
             /*Serialize(json);*/
-            List<string> deserializedData = Deserialize<List<string>>(@"C:\path\to\json1.json");
+            List<string> deserializedData = Deserialize<List<string>>(path);
 
             #region Serialize
 
@@ -23,19 +25,19 @@ namespace ConsoleApp1.Models
             Console.WriteLine(json);
 
 
-            static void Serialize(string json)
+            static void Serialize(string json, string path)
             {
-                using (StreamWriter sw = new StreamWriter(@"C:\Users\User\Desktop\File, Directory\ConsoleApp1\ConsoleApp1\JsonFile\json1.json"))
+                using (StreamWriter sw = new StreamWriter(path))
                 {
                     sw.Write(json);
                 }
             }
 
-            static T Deserialize<T>(string filePath)
+            static T Deserialize<T>( string path)
             {
                 string result;
                 using (StreamReader sr =
-                       new(@"C:\Users\User\Desktop\File, Directory\ConsoleApp1\ConsoleApp1\JsonFile\json1.json"))
+                       new(path))
                 {
                     result = sr.ReadToEnd();
                 }
